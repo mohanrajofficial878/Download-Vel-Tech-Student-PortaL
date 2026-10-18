@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CampusPulse - Vel Tech High Tech</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --card:#111a2b;
+    --card2:#172238;
+    --p:#6c63ff;
+    --s:#00d4ff;
+    --g:#06d6a0;
+    --y:#ffd166;
+    --r:#ff6b6b;
+    --muted:#8d9ab0;
+    --border:rgba(108,99,255,.3);
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#080d19;
+    color:#edf2ff;
+}
+
+button,input,textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.login{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:radial-gradient(circle at top,#18234a,#080d19 60%);
+}
+
+.login-box{
+    width:min(430px,100%);
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:35px;
+    box-shadow:0 20px 70px #0008;
+    text-align:center;
+}
+
+.logo{
+    width:70px;
+    height:70px;
+    border-radius:20px;
+    margin:auto auto 15px;
+    background:linear-gradient(135deg,var(--p),var(--s));
+    display:grid;
+    place-items:center;
+    font-size:34px;
+}
+
+.login-box h1{
+    margin-bottom:7px;
+}
+
+.muted{
+    color:var(--muted);
+}
+
+.form{
+    margin-top:25px;
+    text-align:left;
+}
+
+.form label{
+    display:block;
+    margin:12px 0 7px;
+    color:#b9c4d9;
+    font-size:13px;
+}
+
+.form input,
+.form textarea{
+    width:100%;
+    padding:13px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:#0c1424;
+    color:white;
+    outline:none;
+}
+
+.primary{
+    border:0;
+    border-radius:10px;
+    padding:13px 18px;
+    color:white;
+    background:linear-gradient(135deg,var(--p),var(--s));
+    font-weight:bold;
+}
+
+.full{
+    width:100%;
+    margin-top:18px;
+}
+
+.error{
+    color:var(--r);
+    margin-top:12px;
+    font-size:13px;
+}
+
+.app{
+    display:none;
+    min-height:100vh;
+}
+
+.topbar{
+    height:70px;
+    background:#0c1323;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 22px;
+    position:sticky;
+    top:0;
+    z-index:20;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:bold;
+    font-size:20px;
+}
+
+.brand .mini{
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    background:linear-gradient(135deg,var(--p),var(--s));
+    display:grid;
+    place-items:center;
+}
+
+.menu{
+    display:flex;
+    gap:7px;
+    overflow:auto;
+    padding:8px 12px;
+    background:#0a1120;
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:70px;
+    z-index:19;
+}
+
+.menu button{
+    white-space:nowrap;
+    border:1px solid transparent;
+    background:transparent;
+    color:#aeb9cd;
+    padding:10px 13px;
+    border-radius:9px;
+}
+
+.menu button:hover,
+.menu button.active{
+    background:#18233b;
+    color:#fff;
+    border-color:var(--border);
+}
+
+main{
+    padding:25px;
+    max-width:1500px;
+    margin:auto;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.title{
+    margin-bottom:20px;
+}
+
+.title h2{
+    font-size:26px;
+}
+
+.title p{
+    color:var(--muted);
+    margin-top:6px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:15px;
+}
+
+.card,
+.panel{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:20px;
+}
+
+.card .icon{
+    font-size:28px;
+}
+
+.card h3{
+    margin:10px 0 5px;
+}
+
+.big{
+    font-size:28px;
+    font-weight:bold;
+    color:var(--s);
+}
+
+.panel{
+    margin-top:18px;
+}
+
+.table-wrap{
+    overflow:auto;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:15px;
+}
+
+.table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1050px;
+}
+
+.table th{
+    background:#12203a;
+    color:var(--s);
+    padding:12px;
+    font-size:12px;
+    white-space:nowrap;
+}
+
+.table td{
+    padding:12px;
+    border:1px solid #26324a;
+    text-align:center;
+    font-size:12px;
+}
+
+.table tr:nth-child(even){
+    background:#0e1728;
+}
+
+.mpmc{
+    background:#472a62;
+    font-weight:bold;
+}
+
+.pe{
+    background:#61204f;
+    font-weight:bold;
+}
+
+.break{
+    background:#29313f;
+    color:#aab2c2;
+}
+
+.lunch{
+    background:#27313e;
+    color:#fff;
+}
+
+.project{
+    background:#1b4b55;
+}
+
+.fn{
+    color:var(--g);
+    font-weight:bold;
+}
+
+.an{
+    color:var(--y);
+    font-weight:bold;
+}
+
+.code{
+    color:var(--s);
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.date{
+    color:var(--y);
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.notice{
+    margin-top:15px;
+    padding:13px;
+    border-radius:10px;
+    background:#10243a;
+    border-left:4px solid var(--s);
+    color:#b9c7dc;
+}
+
+.members{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:15px;
+}
+
+.member h3{
+    color:var(--s);
+    margin:8px 0;
+}
+
+.tag{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    background:#26314b;
+    color:#cdd8eb;
+    font-size:11px;
+}
+
+.member p{
+    margin-top:9px;
+    color:#b4bfd2;
+}
+
+.project-title{
+    font-size:18px;
+    color:var(--s);
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.edit{
+    max-width:700px;
+}
+
+.save{
+    margin-top:15px;
+}
+
+.success{
+    color:var(--g);
+    margin-left:10px;
+}
+
+@media(max-width:700px){
+
+    main{
+        padding:15px;
+    }
+
+    .topbar{
+        padding:0 13px;
+    }
+
+    .topbar .clock{
+        display:none;
+    }
+
+    .menu{
+        top:70px;
+    }
+
+    .login-box{
+        padding:25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<section id="loginPage" class="login">
+
+<div class="login-box">
+
+<div class="logo">🎓</div>
+
+<h1>CampusPulse</h1>
+
+<p class="muted">
+Vel Tech High Tech • ECE Student Dashboard
+</p>
+
+<div class="form">
+
+<label>VH Number</label>
+
+<input
+id="loginVH"
+value="14281"
+placeholder="Enter VH number"
+>
+
+<label>Name</label>
+
+<input
+id="loginName"
+value="Mohanraj"
+placeholder="Enter name"
+>
+
+<button
+class="primary full"
+onclick="login()">
+Login
+</button>
+
+<div id="loginError" class="error"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= APPLICATION ================= -->
+
+<div id="app" class="app">
+
+<header class="topbar">
+
+<div class="brand">
+
+<span class="mini">🎓</span>
+
+CampusPulse
+
+</div>
+
+<div
+class="clock"
+id="clock">
+</div>
+
+</header>
+
+
+<!-- ================= MENU ================= -->
+
+<nav class="menu">
+
+<button
+class="active"
+onclick="showPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button
+onclick="showPage('timetable',this)">
+📅 Class Time Table
+</button>
+
+<button
+onclick="showPage('exams',this)">
+📝 Exam Time Table
+</button>
+
+<!-- Exam Centre removed.
+     Innovative Assignment now opens the detailed exam schedule. -->
+
+<button
+onclick="showPage('assignment',this)">
+💡 Innovative Assignment
+</button>
+
+<button
+onclick="showPage('batch',this)">
+👥 Batch Details
+</button>
+
+<button
+onclick="showPage('edit',this)">
+✏️ Edit Details
+</button>
+
+<button onclick="logout()">
+🚪 Logout
+</button>
+
+</nav>
+
+
+<main>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section
+id="dashboard"
+class="page active">
+
+<div class="title">
+
+<h2>
+Welcome,
+<span id="dashName">
+Mohanraj V
+</span>
+👋
+</h2>
+
+<p>
+III Year / V Semester • ECE • Section B •
+Hall H304 • 2026–2027 Odd Semester
+</p>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+
+<div class="icon">📅</div>
+
+<h3>
+Today's Date
+</h3>
+
+<div
+class="big"
+id="today">
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">⏰</div>
+
+<h3>
+Current Time
+</h3>
+
+<div
+class="big"
+id="dashClock">
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🎓</div>
+
+<h3>
+VH Number
+</h3>
+
+<div
+class="big"
+id="dashVH">
+VH14281
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">💡</div>
+
+<h3>
+Innovative Assignment
+</h3>
+
+<div
+class="big">
+Exam Schedule
+</div>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h3>
+📢 Student Information
+</h3>
+
+<p class="notice">
+
+ECE Department •
+Class In-Charge: Dr. M. Vinoth •
+Section B • Hall H304
+
+</p>
+
+</div>
+
+
+<div class="panel">
+
+<h3>
+🚀 Mini Project II
+</h3>
+
+<p
+id="dashProject"
+class="notice">
+
+Passive Colorimetric H2S
+Exposure-Dosimeter Wristband
+with AI-Based Quantitative Reading
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= CLASS TIMETABLE ================= -->
+
+<section
+id="timetable"
+class="page">
+
+<div class="title">
+
+<h2>
+📅 Class Time Table
+</h2>
+
+<p>
+III Year / V Semester •
+Section B • Hall H304 •
+2026–2027 Odd Semester
+</p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Day</th>
+
+<th>
+1<br>
+8:15–9:05
+</th>
+
+<th>
+2<br>
+9:05–9:55
+</th>
+
+<th>
+3<br>
+9:55–10:10
+</th>
+
+<th>
+4<br>
+10:10–11:00
+</th>
+
+<th>
+5<br>
+11:00–11:50
+</th>
+
+<th>
+11:50–12:35
+</th>
+
+<th>
+12:35–1:15
+</th>
+
+<th>
+6<br>
+1:15–2:00
+</th>
+
+<th>
+7<br>
+2:00–2:45
+</th>
+
+<th>
+8<br>
+2:45–3:30
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<!-- MONDAY -->
+
+<tr>
+
+<td>MON</td>
+
+<td>DSP</td>
+
+<td>DSP</td>
+
+<td class="break">
+BREAK
+</td>
+
+<td>TLRF</td>
+
+<td class="mpmc">
+MPMC
+</td>
+
+<td>
+CS/DSP LAB
+</td>
+
+<td class="lunch">
+LUNCH
+</td>
+
+<td
+class="project"
+colspan="3">
+CS/DSP LAB
+</td>
+
+</tr>
+
+
+<!-- TUESDAY -->
+
+<tr>
+
+<td>TUE</td>
+
+<td colspan="2">
+OE I
+</td>
+
+<td class="break">
+BREAK
+</td>
+
+<td>
+DSP
+</td>
+
+<td class="pe">
+PE I
+</td>
+
+<td>
+DC
+</td>
+
+<td class="lunch">
+LUNCH
+</td>
+
+<td>
+TLRF
+</td>
+
+<td>
+DC
+</td>
+
+<td>
+LIB/SPORTS
+</td>
+
+</tr>
+
+
+<!-- WEDNESDAY -->
+
+<tr>
+
+<td>WED</td>
+
+<td>
+TLRF
+</td>
+
+<td>
+MPMC
+</td>
+
+<td class="break">
+BREAK
+</td>
+
+<td class="pe">
+PE I
+</td>
+
+<td>
+DC
+</td>
+
+<td>
+CS/DSP LAB
+</td>
+
+<td class="lunch">
+LUNCH
+</td>
+
+<td
+class="project"
+colspan="3">
+CS/DSP LAB
+</td>
+
+</tr>
+
+
+<!-- THURSDAY -->
+
+<tr>
+
+<td>THU</td>
+
+<td colspan="2">
+OE I
+</td>
+
+<td class="break">
+BREAK
+</td>
+
+<td>
+DC
+</td>
+
+<td class="pe">
+PE I
+</td>
+
+<td>
+MPMC
+</td>
+
+<td class="lunch">
+LUNCH
+</td>
+
+<td>
+TLRF
+</td>
+
+<td>
+DSP
+</td>
+
+<td>
+DSP
+</td>
+
+</tr>
+
+
+<!-- FRIDAY -->
+
+<tr>
+
+<td>FRI</td>
+
+<!-- PERIOD 1 -->
+<td class="mpmc">
+MPMC LAB
+</td>
+
+<!-- PERIOD 2 -->
+<td class="mpmc">
+MPMC LAB
+</td>
+
+<!-- PERIOD 3 -->
+<td class="break">
+BREAK
+</td>
+
+<!-- PERIOD 4 -->
+<td class="mpmc">
+MPMC LAB
+</td>
+
+<!-- PERIOD 5 -->
+<td class="mpmc">
+MPMC LAB
+</td>
+
+<!-- 11:50–12:35 -->
+<td class="pe">
+PE I
+</td>
+
+<!-- 12:35–1:15 -->
+<td class="lunch">
+LUNCH
+</td>
+
+<!-- PERIOD 6 -->
+<td class="project">
+MINI PROJECT - II
+</td>
+
+<!-- PERIOD 7 -->
+<td class="project">
+MINI PROJECT - II
+</td>
+
+<!-- PERIOD 8 -->
+<td class="project">
+MINI PROJECT - II
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="notice">
+
+
+</div>
+
+</section>
+
+
+<!-- ================= EXAM TIMETABLE ================= -->
+
+<section
+id="exams"
+class="page">
+
+<div class="title">
+
+<h2>
+📝 Examination Time Table
+</h2>
+
+<p>
+ECE • Semester V • October 2026
+</p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>S.No</th>
+<th>Department</th>
+<th>Course Code</th>
+<th>Course Title</th>
+<th>Date</th>
+<th>Session</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+<tr>
+<td>1</td>
+<td>ECE</td>
+<td class="code">21EC51T</td>
+<td>Digital Communication</td>
+<td class="date">14.10.2026</td>
+<td class="fn">FN</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>ECE</td>
+<td class="code">21EC52T-26</td>
+<td>Digital Signal Processing</td>
+<td class="date">15.10.2026</td>
+<td class="fn">FN</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>ECE</td>
+<td class="code">21EC53T-26</td>
+<td>Transmission Lines and RF Systems</td>
+<td class="date">16.10.2026</td>
+<td class="fn">FN</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>ECE</td>
+<td class="code">21HE54IT</td>
+<td>Microprocessor and Microcontroller</td>
+<td class="date">21.10.2026</td>
+<td class="fn">FN</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>ECE</td>
+<td class="code">21EC555PT</td>
+<td>Bio-Medical Instrumentation (PE-I)</td>
+<td class="date">22.10.2026</td>
+<td class="fn">FN</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>ECE</td>
+<td class="code">21EC551PT</td>
+<td>Medical Electronics (PE-I)</td>
+<td class="date">22.10.2026</td>
+<td class="fn">FN</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>ECE</td>
+<td class="code">21AI651PT</td>
+<td>Advanced Python Programming (OE-I)</td>
+<td class="date">23.10.2026</td>
+<td class="fn">FN</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>ECE</td>
+<td class="code">21IT01OT</td>
+<td>Business Intelligence (OE-I)</td>
+<td class="date">23.10.2026</td>
+<td class="fn">FN</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>ECE</td>
+<td class="code">21ME01OT</td>
+<td>Industry 4.0 (OE-I)</td>
+<td class="date">23.10.2026</td>
+<td class="fn">FN</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>ECE</td>
+<td class="code">21AI31T</td>
+<td>Introduction to Artificial Intelligence (HC)</td>
+<td class="date">24.10.2026</td>
+<td class="fn">FN</td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>ECE</td>
+<td class="code">21EC02HT</td>
+<td>Machine Learning Techniques and Applications (HC)</td>
+<td class="date">24.10.2026</td>
+<td class="an">AN</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- ================= INNOVATIVE ASSIGNMENT ================= -->
+<!-- Old Innovative Assignment has been removed.
+     Exam Centre details are now displayed here. -->
+
+<section
+id="assignment"
+class="page">
+
+<div class="title">
+
+<h2>
+💡 Innovative Assignment
+</h2>
+
+<p>
+Detailed examination schedule and centre information
+</p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table
+class="table"
+style="min-width:1500px">
+
+<thead>
+
+<tr>
+
+<th>S.No</th>
+<th>Class</th>
+<th>Date</th>
+<th>Session</th>
+<th>Course Code</th>
+<th>Course Title</th>
+<th>Faculty Name</th>
+<th>Venue</th>
+<th>Mode</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>13</td>
+<td>III-A</td>
+<td class="date">10.10.2026</td>
+<td class="fn">FN</td>
+<td class="code">21EC51T</td>
+<td>Digital Communication</td>
+<td>Dr.Pulimi Mahesh AP/ECE 7013576365</td>
+<td>H303, III FLOOR, ECE CLASS ROOM</td>
+<td>Traditional</td>
+
+</tr>
+
+
+<tr>
+
+<td>14</td>
+<td>III-A</td>
+<td class="date">10.10.2026</td>
+<td class="an">AN</td>
+<td class="code">21HE541T</td>
+<td>Microprocessor and Microcontroller</td>
+<td>Mr.T.Kathiravan AP/ECE 9840805280</td>
+<td>H303, III FLOOR, ECE CLASS ROOM</td>
+<td>Traditional</td>
+
+</tr>
+
+
+<tr>
+
+<td>15</td>
+<td>III-A</td>
+<td class="date">12.10.2026</td>
+<td class="fn">FN</td>
+<td class="code">21EC52T-26</td>
+<td>Digital Signal Processing</td>
+<td>Dr.V.P.Kolanchinathan P/ECE 9944962722</td>
+<td>H303, III FLOOR, ECE CLASS ROOM</td>
+<td>Traditional</td>
+
+</tr>
+
+
+<tr>
+
+<td>16</td>
+<td>III-A</td>
+<td class="date">12.10.2026</td>
+<td class="an">AN</td>
+<td class="code">21EC53T-26</td>
+<td>Transmission Lines and RF System</td>
+<td>Dr.M.Vinoth AP/ECE 9952173987</td>
+<td>H303, III FLOOR, ECE CLASS ROOM</td>
+<td>Traditional</td>
+
+</tr>
+
+
+<tr>
+
+<td>17</td>
+<td>III-A</td>
+<td class="date">12.10.2026</td>
+<td class="fn">FN</td>
+<td class="code">21EC551PT</td>
+<td>Medical Electronics</td>
+<td>Dr.K.S.Rani AP/ECE 9710625224</td>
+<td>H303, III FLOOR, ECE CLASS ROOM</td>
+<td>Traditional</td>
+
+</tr>
+
+
+<!-- ROW 18 -->
+
+<tr>
+
+<td rowspan="3">18</td>
+
+<td rowspan="3">III-A</td>
+
+<td rowspan="3" class="date">
+13.10.2026
+</td>
+
+<td rowspan="3" class="an">
+AN III ECE A&amp;B
+</td>
+
+<td class="code">
+21AI651PT
+</td>
+
+<td>
+Advanced Python Programming (55)
+</td>
+
+<td>
+Mr.Nunna Vishnu Vamsi AP/AIDS 8008075676
+</td>
+
+<td>
+H303, III FLOOR, ECE CLASS ROOM
+</td>
+
+<td>
+Traditional
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="code">
+21IT01OT
+</td>
+
+<td>
+Business Intelligence (38)
+</td>
+
+<td>
+Mrs.Harini AP/IT 7092403431
+</td>
+
+<td>
+H304, III FLOOR, ECE CLASS ROOM
+</td>
+
+<td>
+Traditional
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="code">
+21ME01OT
+</td>
+
+<td>
+Industry 4.0 (32)
+</td>
+
+<td>
+Dr.K.Parthiban AP/MECH 9626523917
+</td>
+
+<td>
+H304, III FLOOR, ECE CLASS ROOM
+</td>
+
+<td>
+Traditional
+</td>
+
+</tr>
+
+
+<!-- ROW 19 -->
+
+<tr>
+
+<td>19</td>
+
+<td>III-B</td>
+
+<td class="date">
+10.10.2026
+</td>
+
+<td class="fn">
+FN
+</td>
+
+<td class="code">
+21EC52T-26
+</td>
+
+<td>
+Digital Signal Processing
+</td>
+
+<td>
+Dr.V.P.Kolanchinathan P/ECE 9944962722
+</td>
+
+<td>
+H304, III FLOOR, ECE CLASS ROOM
+</td>
+
+<td>
+Traditional
+</td>
+
+</tr>
+
+
+<!-- ROW 20 -->
+
+<tr>
+
+<td>20</td>
+
+<td>III-B</td>
+
+<td class="date">
+10.10.2026
+</td>
+
+<td class="an">
+AN
+</td>
+
+<td class="code">
+21EC53T-26
+</td>
+
+<td>
+Transmission Lines and RF System
+</td>
+
+<td>
+Dr.M.Vinoth AP/ECE 9952173987
+</td>
+
+<td>
+H304, III FLOOR, ECE CLASS ROOM
+</td>
+
+<td>
+Traditional
+</td>
+
+</tr>
+
+
+<!-- ROW 21 -->
+
+<tr>
+
+<td>21</td>
+
+<td>III-B</td>
+
+<td class="date">
+12.10.2026
+</td>
+
+<td class="fn">
+FN
+</td>
+
+<td class="code">
+21HE541T
+</td>
+
+<td>
+Microprocessor and Microcontroller
+</td>
+
+<td>
+Dr.Srinivasan AP/ECE 7418092165
+</td>
+
+<td>
+H304, III FLOOR, ECE CLASS ROOM
+</td>
+
+<td>
+Traditional
+</td>
+
+</tr>
+
+
+<!-- ROW 22 -->
+
+<tr>
+
+<td>22</td>
+
+<td>III-B</td>
+
+<td class="date">
+12.10.2026
+</td>
+
+<td class="an">
+AN
+</td>
+
+<td class="code">
+21EC51T
+</td>
+
+<td>
+Digital Communication
+</td>
+
+<td>
+Dr.Pulimi Mahesh AP/ECE 7013576365
+</td>
+
+<td>
+H304, III FLOOR, ECE CLASS ROOM
+</td>
+
+<td>
+Traditional
+</td>
+
+</tr>
+
+
+<!-- ROW 23 -->
+
+<tr>
+
+<td>23</td>
+
+<td>III-B</td>
+
+<td class="date">
+13.10.2026
+</td>
+
+<td class="fn">
+FN
+</td>
+
+<td class="code">
+21EC555PT
+</td>
+
+<td>
+Biomedical Instrumentation
+</td>
+
+<td>
+Dr.S.Sivasaravana Babu AP/ECE
+</td>
+
+<td>
+H304, III FLOOR, ECE CLASS ROOM
+</td>
+
+<td>
+Traditional
+</td>
+
+</tr>
+
+
+<!-- ROW 24 -->
+
+<tr>
+
+<td>24</td>
+
+<td>III-B</td>
+
+<td class="date">
+13.10.2026
+</td>
+
+<td class="an">
+AN
+</td>
+
+<td class="code">
+NIL
+</td>
+
+<td>
+NIL
+</td>
+
+<td>
+NIL
+</td>
+
+<td>
+—
+</td>
+
+<td>
+Traditional
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="notice">
+
+Row 23 phone number is not fully visible in the supplied timetable image, so it has intentionally not been guessed.
+
+</div>
+
+</section>
+
+
+<!-- ================= BATCH DETAILS ================= -->
+
+<section
+id="batch"
+class="page">
+
+<div class="title">
+
+<h2>
+👥 Batch Details
+</h2>
+
+<p>
+Mini Project II • ECE III/V
+</p>
+
+</div>
+
+
+<div class="panel">
+
+<div
+class="project-title"
+id="projectTitle">
+
+Passive Colorimetric H2S
+Exposure-Dosimeter Wristband
+with AI-Based Quantitative Reading
+
+</div>
+
+
+<div class="members">
+
+
+<div class="card member">
+
+<span class="tag">
+VH14263
+</span>
+
+<h3>
+T G KAVIPRIYA
+</h3>
+
+<p>
+📞 8056574250
+</p>
+
+<p>
+✉️ vh14263@velhightech.com
+</p>
+
+</div>
+
+
+<div class="card member">
+
+<span class="tag">
+VH14239
+</span>
+
+<h3>
+Dhanalakshmi S
+</h3>
+
+<p>
+📞 +919789195841
+</p>
+
+<p>
+✉️ vh14239@velhightech.com
+</p>
+
+</div>
+
+
+<div class="card member">
+
+<span class="tag">
+VH14281
+</span>
+
+<h3 id="batchName">
+Mohanraj V
+</h3>
+
+<p id="batchPhone">
+📞 9790490878
+</p>
+
+<p id="batchEmail">
+✉️ vh14281@velhightech.com
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= EDIT DETAILS ================= -->
+
+<section
+id="edit"
+class="page">
+
+<div class="title">
+
+<h2>
+✏️ Edit Details
+</h2>
+
+<p>
+Changes are saved in this browser.
+</p>
+
+</div>
+
+
+<div class="panel edit">
+
+<div class="form">
+
+<label>
+Name
+</label>
+
+<input id="editName">
+
+
+<label>
+VH Number
+</label>
+
+<input id="editVH">
+
+
+<label>
+Phone
+</label>
+
+<input id="editPhone">
+
+
+<label>
+Email
+</label>
+
+<input id="editEmail">
+
+
+<label>
+Project Title
+</label>
+
+<textarea
+id="editProject"
+rows="3">
+</textarea>
+
+
+<button
+class="primary save"
+onclick="saveDetails()">
+
+Save Details
+
+</button>
+
+<span
+id="saveMsg"
+class="success">
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+/* ================= DEFAULT DATA ================= */
+
+const defaultDetails = {
+
+    name:'Mohanraj V',
+
+    vh:'14281',
+
+    phone:'9790490878',
+
+    email:'vh14281@velhightech.com',
+
+    project:
+    'Passive Colorimetric H2S Exposure-Dosimeter Wristband with AI-Based Quantitative Reading'
+
+};
+
+
+/* ================= LOCAL STORAGE ================= */
+
+let details =
+JSON.parse(
+localStorage.getItem('campusDetails') || 'null'
+) || defaultDetails;
+
+
+/* ================= HELPER ================= */
+
+function $(id){
+    return document.getElementById(id);
+}
+
+
+/* ================= LOGIN ================= */
+
+function login(){
+
+    const vh =
+    $('loginVH')
+    .value
+    .trim()
+    .replace(/^VH/i,'');
+
+    const name =
+    $('loginName')
+    .value
+    .trim();
+
+    if(
+        vh === '14281' &&
+        name.toLowerCase() === 'mohanraj'
+    ){
+
+        $('loginPage').style.display='none';
+
+        $('app').style.display='block';
+
+        refresh();
+
+    }
+
+    else{
+
+        $('loginError').textContent =
+        'Invalid VH number or name. Try 14281 / Mohanraj.';
+
+    }
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function logout(){
+
+    $('app').style.display='none';
+
+    $('loginPage').style.display='flex';
+
+}
+
+
+/* ================= PAGE NAVIGATION ================= */
+
+function showPage(id,btn){
+
+    document
+    .querySelectorAll('.page')
+    .forEach(
+        x => x.classList.remove('active')
+    );
+
+    $(id).classList.add('active');
+
+
+    document
+    .querySelectorAll('.menu button')
+    .forEach(
+        x => x.classList.remove('active')
+    );
+
+
+    if(btn){
+
+        btn.classList.add('active');
+
+    }
+
+
+    if(id === 'edit'){
+
+        fillEdit();
+
+    }
+
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* ================= CLOCK ================= */
+
+function clock(){
+
+    const d = new Date();
+
+    $('clock').textContent =
+    d.toLocaleTimeString();
+
+    $('dashClock').textContent =
+    d.toLocaleTimeString();
+
+    $('today').textContent =
+    d.toLocaleDateString(
+        undefined,
+        {
+            day:'2-digit',
+            month:'short',
+            year:'numeric'
+        }
+    );
+
+}
+
+setInterval(clock,1000);
+
+clock();
+
+
+/* ================= REFRESH ================= */
+
+function refresh(){
+
+    $('dashName').textContent =
+    details.name;
+
+    $('dashVH').textContent =
+    'VH' + details.vh;
+
+    $('dashProject').textContent =
+    details.project;
+
+    $('batchName').textContent =
+    details.name;
+
+    $('batchPhone').textContent =
+    '📞 ' + details.phone;
+
+    $('batchEmail').textContent =
+    '✉️ ' + details.email;
+
+    $('projectTitle').textContent =
+    details.project;
+
+    clock();
+
+}
+
+
+/* ================= EDIT DETAILS ================= */
+
+function fillEdit(){
+
+    $('editName').value =
+    details.name;
+
+    $('editVH').value =
+    details.vh;
+
+    $('editPhone').value =
+    details.phone;
+
+    $('editEmail').value =
+    details.email;
+
+    $('editProject').value =
+    details.project;
+
+}
+
+
+/* ================= SAVE DETAILS ================= */
+
+function saveDetails(){
+
+    details = {
+
+        name:
+        $('editName').value.trim()
+        || defaultDetails.name,
+
+        vh:
+        $('editVH').value.trim()
+        || defaultDetails.vh,
+
+        phone:
+        $('editPhone').value.trim(),
+
+        email:
+        $('editEmail').value.trim(),
+
+        project:
+        $('editProject').value.trim()
+        || defaultDetails.project
+
+    };
+
+
+    localStorage.setItem(
+        'campusDetails',
+        JSON.stringify(details)
+    );
+
+
+    refresh();
+
+
+    $('saveMsg').textContent =
+    'Saved ✓';
+
+
+    setTimeout(
+        () => $('saveMsg').textContent='',
+        2000
+    );
+
+}
+
+</script>
+
+</body>
+</html>
